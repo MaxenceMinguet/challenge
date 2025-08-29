@@ -73,7 +73,7 @@ export type StudentProps = z.infer<typeof StudentSchema>;
 export type StudentPropsWithId = StudentProps & { id: number };
 export type GetStudentDetailProps = StudentPropsWithId & { reporterName: string };
 export type StudentData = {
-  students: UserAccountBasicProps[];
+  data: UserAccountBasicProps[];
 };
 
 export type StudentDetail = {

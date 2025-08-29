@@ -19,7 +19,7 @@ export const studentApi = api.injectEndpoints({
         return `/students${queryString}`;
       },
       providesTags: (result) =>
-        result?.students?.map(({ id }) => {
+        result?.data?.map(({ id }) => {
           return { type: Tag.STUDENTS, id };
         }) || [{ type: Tag.STUDENTS }]
     }),

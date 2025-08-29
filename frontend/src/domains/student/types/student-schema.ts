@@ -17,8 +17,14 @@ export const BasicInfoSchema = z.object({
 
 export const AcademicInfoSchema = z.object({
   class: z.string().min(1, 'Class is required'),
-  section: z.string(),
-  roll: z.string().min(1, 'Roll is required'),
+  section: z.string().min(1, 'Section is required'),
+  roll: z
+    .string()
+    .min(1, 'Roll is required')
+    .refine((val) => {
+      const num = Number(val);
+      return Number.isInteger(num) && num > 0;
+    }, 'Roll must be a positive integer'),
   admissionDate: z.union([z.date(), z.string()])
 });
 

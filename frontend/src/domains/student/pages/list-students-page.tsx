@@ -59,7 +59,7 @@ export const ListStudents: React.FC = () => {
           isLoading,
           isError,
           error: getErrorMsg(error as FetchBaseQueryError | SerializedError).message,
-          users: data?.students || []
+          users: data?.data || []
         }}
       />
     </>

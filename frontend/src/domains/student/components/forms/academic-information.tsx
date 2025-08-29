@@ -18,6 +18,8 @@ import { DATE_FORMAT } from '@/utils/helpers/date';
 import { StudentProps } from '../../types';
 import { useClasses } from '../../hooks';
 import { useGetSectionsQuery } from '@/domains/section/api';
+import { ClassSelect } from './class-select';
+import { SectionSelect } from './section-select';
 
 export const AcademicInformation = () => {
   const {
@@ -40,59 +42,13 @@ export const AcademicInformation = () => {
           <InputLabel id='class' shrink>
             Class
           </InputLabel>
-          <Controller
-            name='class'
-            control={control}
-            render={({ field: { onChange, value }, fieldState: { error } }) => (
-              <>
-                <Select
-                  label='Class'
-                  labelId='class'
-                  notched
-                  value={value}
-                  onChange={(event) => onChange(event.target.value)}
-                >
-                  {classes.map(({ name }) => (
-                    <MenuItem value={name} key={name}>
-                      {name}
-                    </MenuItem>
-                  ))}
-                </Select>
-                <FormHelperText>{error?.message}</FormHelperText>
-              </>
-            )}
-          />
+          <ClassSelect control={control} classes={classes} />
         </FormControl>
         <FormControl size='small' sx={{ width: '150px' }} error={Boolean(errors.section)}>
           <InputLabel id='class' shrink>
             Section
           </InputLabel>
-          <Controller
-            name='section'
-            control={control}
-            render={({ field: { onChange, value }, fieldState: { error } }) => (
-              <>
-                <Select
-                  label='Section'
-                  labelId='section'
-                  value={value}
-                  onChange={(e) => onChange(e.target.value)}
-                  notched
-                >
-                  {isLoading ? (
-                    <>loading...</>
-                  ) : (
-                    data?.sections?.map(({ name }) => (
-                      <MenuItem value={name} key={name}>
-                        {name}
-                      </MenuItem>
-                    ))
-                  )}
-                </Select>
-                <FormHelperText>{error?.message}</FormHelperText>
-              </>
-            )}
-          />
+          <SectionSelect control={control} sections={data?.sections || []} isLoading={isLoading} />
         </FormControl>
         <Box>
           <TextField

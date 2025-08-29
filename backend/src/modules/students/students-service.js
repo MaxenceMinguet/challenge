@@ -45,7 +45,7 @@ const addNewStudent = async (payload) => {
             return { message: ADD_STUDENT_AND_BUT_EMAIL_SEND_FAIL }
         }
     } catch (error) {
-        throw new ApiError(500, "Unable to add student");
+        throw new ApiError(500, error);
     }
 }
 
